@@ -2,7 +2,7 @@ import streamlit as st
 import re
 import random
 import string
-import bcrypt
+import hashlib  
 
 # 🔐 Function to check password strength
 def check_password_strength(password):
@@ -16,7 +16,7 @@ def check_password_strength(password):
 
     # Length check
     if len(password) >= 12:
-        score += 2  # Stronger if longer
+        score += 2  
     elif len(password) >= 8:
         score += 1
     else:
@@ -49,10 +49,9 @@ def generate_password():
     chars = string.ascii_letters + string.digits + "!@#$%^&*"
     return "".join(random.choice(chars) for _ in range(14))
 
-# 🔒 Function to hash password (for future security implementation)
+# 🔒 Function to hash password using hashlib
 def hash_password(password):
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(password.encode(), salt)
+    hashed = hashlib.sha256(password.encode()).hexdigest()
     return hashed
 
 # 🌟 Streamlit UI
