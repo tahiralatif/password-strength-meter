@@ -95,5 +95,7 @@ if password:
 
     # 🛠 Generate a strong password if weak
     if strength in ["Weak", "Very Weak"]:
+        # heading
+        st.subheader("���️ Generate a stronger password!")
         if st.button("Generate Strong Password"):
             st.success(f"✅ Suggested Password: `{generate_password()}`")
